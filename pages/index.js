@@ -1,11 +1,29 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import axios from 'axios'
+import ListProducts from '@/components/products/ListProducts'
+import React from 'react'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+
+
+const Home = () => {
+  const [productsData, setProductsData] = React.useState()
+  React.useEffect(() => {
+    const getProducts = async () => {
+      try {
+        // const { data } = await axios.get('https://fakestoreapi.com/products')
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/products`)
+        setProductsData(data)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+    getProducts()
+  }, [])
   return (
     <>
       <Head>
@@ -15,8 +33,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="underline text-2xl font-bold">Hello buddy</h1>
+        <ListProducts data={productsData} />
       </main>
     </>
   )
 }
+
+export default Home
