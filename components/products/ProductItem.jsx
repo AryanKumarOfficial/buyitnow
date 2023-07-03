@@ -39,7 +39,7 @@ const ProductItem = ({ product }) => {
               <div className="ratings">
                 <div className="my-1">
                   <StarRatings
-                    rating={product?.ratings}
+                    rating={product?.rating}
                     starRatedColor="#ffb829"
                     numberOfStars={5}
                     starDimension="18px"
@@ -49,7 +49,7 @@ const ProductItem = ({ product }) => {
                 </div>
               </div>
               <b className="text-gray-300">•</b>
-              <span className="ml-1 text-yellow-500">{product?.ratings}</span>
+              <span className="ml-1 text-yellow-500">{product?.rating}</span>
             </div>
             <p className="text-gray-500 mb-2">
               {product?.description.substring(0, 150)}...

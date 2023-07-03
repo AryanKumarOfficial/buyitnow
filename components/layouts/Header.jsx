@@ -11,7 +11,7 @@ const Header = () => {
           <div className="flex-shrink-0 mr-5">
             <a href="/">
               <Image
-                src="/images/logo.png"
+                src="/vercel.svg"
                 height="40"
                 width="120"
                 alt="BuyItNow"
@@ -45,7 +45,7 @@ const Header = () => {
                 />
                 <div className="space-y-1 font-medium">
                   <p>
-                    Ghulam
+                    Aryan
                     <time className="block text-sm text-gray-500 dark:text-gray-400">
                       test@gmail.com
                     </time>
