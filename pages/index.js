@@ -1,29 +1,35 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import axios from 'axios'
 import ListProducts from '@/components/products/ListProducts'
-import React from 'react'
-
-
-const inter = Inter({ subsets: ['latin'] })
-
-
+import { useRouter } from 'next/router'
+import React, { useEffect, useState } from 'react'
 
 const Home = () => {
-  const [productsData, setProductsData] = React.useState()
-  React.useEffect(() => {
-    const getProducts = async () => {
-      try {
-        // const { data } = await axios.get('https://fakestoreapi.com/products')
-        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/products`)
-        setProductsData(data)
+  const router = useRouter()
+  const { query } = router
+  const search = query.search || ''
+  const page = query.page || 1
+
+  const [productsData, setProductsData] = useState()
+
+  useEffect(() => {
+    const getProducts = async (search, page) => {
+      const urlParams = {
+        keyword: search,
+        page: page,
       }
-      catch (error) {
-        console.log(error)
-      }
+
+      const searchQuery = new URLSearchParams(urlParams).toString()
+      console.log(searchQuery, 'searchQuery')
+
+      // const { data } = await axios.get('https://fakestoreapi.com/products?' + searchQuery)
+      const { data } = await axios.get('/api/products?' + searchQuery)
+      setProductsData(data)
     }
-    getProducts()
-  }, [])
+
+    getProducts(search, page)
+  }, [search, page])
+
   return (
     <>
       <Head>
