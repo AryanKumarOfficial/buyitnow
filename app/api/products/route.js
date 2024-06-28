@@ -1,8 +1,8 @@
 import connectDB from "@/backend/config/mongoose";
-import { newProduct } from "@/backend/controllers/productControllers";
+import { getProducts, newProduct } from "@/backend/controllers/productControllers";
 
 connectDB();
 
 export const POST = newProduct;
 
-// export const GET;
+export const GET = getProducts;

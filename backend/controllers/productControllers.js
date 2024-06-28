@@ -18,3 +18,14 @@ export const newProduct = async (request) => {
 
 }
 
+export const getProducts = async (_request) => {
+    try {
+        const products = await Product.find();
+        return Response.json({
+            products: products,
+            success: true,
+        }, { status: 200 });
+    } catch (error) {
+        return Response.json({ success: false, error: error.message }, { status: 500 })
+    }
+}
