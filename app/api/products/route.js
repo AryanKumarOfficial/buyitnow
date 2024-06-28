@@ -4,3 +4,5 @@ import { newProduct } from "@/backend/controllers/productControllers";
 connectDB();
 
 export const POST = newProduct;
+
+// export const GET;
