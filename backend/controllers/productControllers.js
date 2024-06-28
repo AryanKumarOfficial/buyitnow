@@ -9,7 +9,7 @@ export const newProduct = async (request) => {
         const data = await request.json();
         const product = await Product.create(data);
         return Response.json({
-            product: JSON.stringify(product),
+            product: product,
             success: true,
         }, { status: 201 });
     } catch (error) {

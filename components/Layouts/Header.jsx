@@ -11,15 +11,13 @@ const Header = () => {
           <div className="flex-shrink-0 mr-5">
             <Link href="/">
               <Image
-                src="/favicon.ico"
+                src="/images/logo.png"
+                alt="BuyItNow"
+                width={100}
+                height={100}
                 style={{
                   height: "50px",
-                  width: "60px",
-                  transform: "rotate(90deg)",
                 }}
-                height="40"
-                width="120"
-                alt="BuyItNow"
               />
             </Link>
           </div>
@@ -45,14 +43,14 @@ const Header = () => {
             <Link href="/me">
               <div className="flex items-center mb-4 space-x-3 mt-4 cursor-pointer">
                 <Image
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full rotate-180"
-                  src={"/favicon.ico"}
+                  width={50}
+                  height={50}
+                  className="w-10 h-10 rounded-full"
+                  src={"/images/default.png"}
                 />
                 <div className="space-y-1 font-medium">
                   <p>
-                    Ghulam
+                    Guest
                     <time className="block text-sm text-gray-500 dark:text-gray-400">
                       test@gmail.com
                     </time>

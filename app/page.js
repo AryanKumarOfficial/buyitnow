@@ -2,7 +2,11 @@ import ListProducts from '@/components/Products/ListProducts'
 import React from 'react'
 
 const getProducts = async () => {
-  const res = await fetch(`${process.env.NEXT_APP_API_URL}/api/products`)
+  const res = await fetch(`${process.env.NEXT_APP_API_URL}/api/products`, {
+    next: {
+      revalidate: 60
+    }
+  })
   const data = await res.json()
   return data;
 }

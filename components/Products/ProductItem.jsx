@@ -24,9 +24,9 @@ const ProductItem = ({ product }) => {
                 src={
                   product?.image?.[0]?.url
                     ? product?.image?.[0]?.url
-                    : `https://picsum.photos/240/240`
+                    : `/images/default_product.png`
                 }
-                alt="product anme"
+                alt="headphone"
                 height="240"
                 width="240"
               />
