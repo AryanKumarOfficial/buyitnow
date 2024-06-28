@@ -1,10 +1,16 @@
+import ListProducts from '@/components/Products/ListProducts'
 import React from 'react'
 
-const HomePage = () => {
+const getProducts = async () => {
+  const res = await fetch(`${process.env.NEXT_APP_API_URL}/api/products`)
+  const data = await res.json()
+  return data;
+}
+
+const HomePage = async () => {
+  const { products } = await getProducts() || [];
   return (
-    <div className='text-2xl'>
-      HomePage
-    </div>
+    <ListProducts data={products} />
   )
 }
 

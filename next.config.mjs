@@ -2,7 +2,13 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ["www.datocms-assets.com"],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'picsum.photos',
+                port:""
+            }
+        ]
     },
     async headers() {
         return [
@@ -19,6 +25,7 @@ const nextConfig = {
     },
     env: {
         MONGO_URI: 'mongodb://localhost:27017/buyitnow',
+        NEXT_APP_API_URL: 'http://localhost:3000',
     },
 };
 
