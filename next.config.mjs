@@ -6,7 +6,17 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'picsum.photos',
-                port:""
+                port: ""
+            },
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                port: ""
+            },
+            {
+                protocol: 'http',
+                hostname: 'res.cloudinary.com',
+                port: ""
             }
         ]
     },

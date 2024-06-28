@@ -20,12 +20,31 @@ export const newProduct = async (request) => {
 
 export const getProducts = async (_request) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find()?.sort({ createdAt: -1 });
         return Response.json({
             products: products,
             success: true,
         }, { status: 200 });
     } catch (error) {
+        return Response.json({ success: false, error: error.message }, { status: 500 })
+    }
+}
+
+export const getProductById = async (request, { params }) => {
+
+    try {
+        const { id } = params;
+        console.log(typeof (id), "id");
+        const product = await Product.findById(id);
+        if (!product) {
+            return Response.json({ success: false, error: "Product not found" }, { status: 404 });
+        }
+        return Response.json({
+            product: product,
+            success: true,
+        }, { status: 200 });
+    }
+    catch (error) {
         return Response.json({ success: false, error: error.message }, { status: 500 })
     }
 }

@@ -22,8 +22,8 @@ const ProductItem = ({ product }) => {
             >
               <Image
                 src={
-                  product?.image?.[0]?.url
-                    ? product?.image?.[0]?.url
+                  product?.images?.[0]?.url
+                    ? product?.images?.[0]?.url
                     : `/images/default_product.png`
                 }
                 alt="headphone"
@@ -34,7 +34,10 @@ const ProductItem = ({ product }) => {
           </div>
           <div className="md:w-2/4">
             <div className="p-4">
-              <Link href={`/`} className="hover:text-blue-600">
+              <Link
+                href={`/product/${product._id}`}
+                className="hover:text-blue-600"
+              >
                 {product.name}
               </Link>
               <div className="flex flex-wrap items-center space-x-2 mb-2">
