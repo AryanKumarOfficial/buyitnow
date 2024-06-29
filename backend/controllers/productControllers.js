@@ -24,10 +24,6 @@ export const getProducts = async (request) => {
         queryStr[key] = value
     }
 
-    console.log('====================================');
-    console.log(queryStr);
-    console.log('====================================');
-
     const apiFilters = new APIFilters(Product.find(), queryStr).search().filter();
 
     try {
