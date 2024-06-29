@@ -15,9 +15,11 @@ const getProducts = async (searchParams) => {
 
 const HomePage = async ({ searchParams }) => {
   console.log(searchParams, 'search');
-  const { products } = await getProducts(searchParams) || [];
+  const  products  = await getProducts(searchParams) || [];
   return (
-    <ListProducts data={products} />
+    <>
+      <ListProducts data={products} />
+    </>
   )
 }
 

@@ -12,6 +12,7 @@ const Search = () => {
     } else {
       router.push("/");
     }
+    setKeyword("");
   };
 
   return (
