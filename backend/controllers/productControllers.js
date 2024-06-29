@@ -19,8 +19,16 @@ export const newProduct = async (request) => {
 
 export const getProducts = async (request) => {
     const keyword = request.nextUrl.searchParams.get("keyword");
+    const queryStr = {}
+    for (let [key, value] of request.nextUrl.searchParams) {
+        queryStr[key] = value
+    }
 
-    const apiFilters = new APIFilters(Product.find(), { keyword }).search();
+    console.log('====================================');
+    console.log(queryStr);
+    console.log('====================================');
+
+    const apiFilters = new APIFilters(Product.find(), queryStr).search().filter();
 
     try {
         const products = await apiFilters.query;
