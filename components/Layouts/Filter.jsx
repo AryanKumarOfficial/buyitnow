@@ -1,8 +1,10 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import StarRatings from "react-star-ratings";
 
 const Filters = () => {
+  const router = useRouter();
   let queryParams;
 
   function checkHandler(checkBoxType, checkBoxValue) {
@@ -15,6 +17,31 @@ const Filters = () => {
       if (checkBoxValue === value) return true;
       return false;
     }
+  }
+
+  function handleClick(checkbox) {
+    if (typeof window !== "undefined") {
+      queryParams = new URLSearchParams(window.location.search);
+    }
+
+    const checkboxes = document.getElementsByName(checkbox.name);
+    checkboxes.forEach((box) => {
+      if (box !== checkbox) {
+        box.checked = false;
+      }
+    });
+
+    if (checkbox.checked === false) {
+      queryParams.delete(checkbox.name);
+    } else {
+      if (queryParams.has(checkbox.name)) {
+        queryParams.set(checkbox.name, checkbox.value);
+      } else {
+        queryParams.append(checkbox.name, checkbox.value);
+      }
+    }
+    const path = `${window.location.pathname}?${queryParams.toString()}`;
+    router.push(path);
   }
 
   const categoryList = [
@@ -83,8 +110,12 @@ const Filters = () => {
                   value={category}
                   className="h-4 w-4 peer"
                   defaultChecked={checkHandler("category", category)}
+                  onClick={(e) => handleClick(e.target)}
                 />
-                <span className="ml-2 text-gray-500 transition-colors duration-300 hover:text-gray-900 peer-checked:text-green-500"> {category} </span>
+                <span className="ml-2 text-gray-500 transition-colors duration-300 hover:text-gray-900 peer-checked:text-green-500">
+                  {" "}
+                  {category}{" "}
+                </span>
               </label>
             </li>
           ))}
@@ -103,6 +134,7 @@ const Filters = () => {
                   value={rating}
                   className="h-4 w-4"
                   defaultChecked={checkHandler("ratings", `${rating}`)}
+                  onClick={(e) => handleClick(e.target)}
                 />
                 <span className="ml-2 text-gray-500">
                   {" "}

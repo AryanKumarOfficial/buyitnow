@@ -19,21 +19,19 @@ class APIFilters {
         const queryCopy = { ...this.queryStr };
         const removeFields = ['keyword', 'limit', 'page'];
         removeFields.forEach((el) => delete queryCopy[el]);
+
         let output = {};
-        let prop = "";
 
         for (let key in queryCopy) {
-            if (!key.match(/\b(gte|gt|lte|lt)/)) {
-                output = queryCopy[key];
-            }
-            else {
-                prop = key.split('[')[0];
-                let operator = key.match(/\[(.*)\]/)[1];
-                if (!output[prop]) {
-                    output[prop] = {};
+            if (!key.match(/\b(gte|gt|lte|lt)\b/)) {
+                output[key] = queryCopy[key];
+            } else {
+                const [field, operator] = key.split('[');
+                const op = operator.replace(']', '');
+                if (!output[field]) {
+                    output[field] = {};
                 }
-
-                output[prop][`$${operator}`] = queryCopy[key];
+                output[field][`$${op}`] = queryCopy[key];
             }
         }
         this.query = this.query.find(output);
