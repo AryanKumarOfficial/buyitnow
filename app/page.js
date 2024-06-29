@@ -3,7 +3,6 @@ import React from 'react'
 
 const getProducts = async (searchParams) => {
   const urlParams = new URLSearchParams(searchParams);
-  console.log(urlParams, 'urlParams');
   const res = await fetch(`${process.env.NEXT_APP_API_URL}/api/products?${urlParams}`, {
     headers: {
       "cache-control": "no-cache",
@@ -14,7 +13,6 @@ const getProducts = async (searchParams) => {
 }
 
 const HomePage = async ({ searchParams }) => {
-  console.log(searchParams, 'search');
   const  products  = await getProducts(searchParams) || [];
   return (
     <>

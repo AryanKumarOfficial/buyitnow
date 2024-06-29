@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import StarRatings from "react-star-ratings";
 
@@ -16,6 +16,22 @@ const Filters = () => {
       return false;
     }
   }
+
+  const categoryList = [
+    "Electronics",
+    "Cameras",
+    "Laptops",
+    "Accessories",
+    "Headphones",
+    "Food",
+    "Books",
+    "Clothes/Shoes",
+    "Beauty/Health",
+    "Sports",
+    "Outdoor",
+    "Home",
+    "Headphones",
+  ];
 
   return (
     <aside className="md:w-1/3 lg:w-1/4 px-4">
@@ -58,66 +74,20 @@ const Filters = () => {
         <h3 className="font-semibold mb-2">Category</h3>
 
         <ul className="space-y-1">
-          <li>
-            <label className="flex items-center">
-              <input
-                name="category"
-                type="checkbox"
-                value="Electronics"
-                className="h-4 w-4"
-                defaultChecked={checkHandler("category", "Electronics")}
-              />
-              <span className="ml-2 text-gray-500"> Electronics </span>
-            </label>
-          </li>
-          <li>
-            <label className="flex items-center">
-              <input
-                name="category"
-                type="checkbox"
-                value="Laptops"
-                className="h-4 w-4"
-                defaultChecked={checkHandler("category", "Laptops")}
-              />
-              <span className="ml-2 text-gray-500"> Laptops </span>
-            </label>
-          </li>
-          <li>
-            <label className="flex items-center">
-              <input
-                name="category"
-                type="checkbox"
-                value="Toys"
-                className="h-4 w-4"
-                defaultChecked={checkHandler("category", "Toys")}
-              />
-              <span className="ml-2 text-gray-500"> Toys </span>
-            </label>
-          </li>
-          <li>
-            <label className="flex items-center">
-              <input
-                name="category"
-                type="checkbox"
-                value="Office"
-                className="h-4 w-4"
-                defaultChecked={checkHandler("category", "Office")}
-              />
-              <span className="ml-2 text-gray-500"> Office </span>
-            </label>
-          </li>
-          <li>
-            <label className="flex items-center">
-              <input
-                name="category"
-                type="checkbox"
-                value="Beauty"
-                className="h-4 w-4"
-                defaultChecked={checkHandler("category", "Beauty")}
-              />
-              <span className="ml-2 text-gray-500"> Beauty </span>
-            </label>
-          </li>
+          {categoryList.map((category) => (
+            <li key={category}>
+              <label className="flex items-center cursor-pointer">
+                <input
+                  name="category"
+                  type="checkbox"
+                  value={category}
+                  className="h-4 w-4 peer"
+                  defaultChecked={checkHandler("category", category)}
+                />
+                <span className="ml-2 text-gray-500 transition-colors duration-300 hover:text-gray-900 peer-checked:text-green-500"> {category} </span>
+              </label>
+            </li>
+          ))}
         </ul>
 
         <hr className="my-4" />
@@ -137,7 +107,7 @@ const Filters = () => {
                 <span className="ml-2 text-gray-500">
                   {" "}
                   <StarRatings
-                    rating={5}
+                    rating={rating}
                     starRatedColor="#ffb829"
                     numberOfStars={5}
                     starDimension="20px"
