@@ -1,18 +1,21 @@
 import ListProducts from '@/components/Products/ListProducts'
 import React from 'react'
 
-const getProducts = async () => {
-  const res = await fetch(`${process.env.NEXT_APP_API_URL}/api/products`, {
-    next: {
-      revalidate: 60
+const getProducts = async (searchParams) => {
+  const urlParams = new URLSearchParams(searchParams);
+  console.log(urlParams, 'urlParams');
+  const res = await fetch(`${process.env.NEXT_APP_API_URL}/api/products?${urlParams}`, {
+    headers: {
+      "cache-control": "no-cache",
     }
   })
   const data = await res.json()
   return data;
 }
 
-const HomePage = async () => {
-  const { products } = await getProducts() || [];
+const HomePage = async ({ searchParams }) => {
+  console.log(searchParams, 'search');
+  const { products } = await getProducts(searchParams) || [];
   return (
     <ListProducts data={products} />
   )
